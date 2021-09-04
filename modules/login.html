@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/login.css" />
+  </head>
+  <body>
+    <nav class="navigation-bar">
+      <a href="../index.html"><h1 class="company-logo">Sort Your Life</h1></a>
+    </nav>
+    <div class="form-container">
+      <header>
+        <h2><strong>LOGIN</strong></h2>
+      </header>
+      <div class="form" > 
+        <!-- action="/modules/todo.html" onsubmit="return validateLogin()"> -->
+        <!-- Used AUTOFOCUS -->
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          required
+          autofocus 
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          required
+        />
+        <div class="buttons">
+          <input type="submit" value="LOGIN" id="login" />
+          <input
+            type="button"
+            value="SIGNUP"
+            id="register"
+          />
+        </div>
+        <p>If you don't have an account please click SIGNUP</p>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="../scripts/login_register.js"></script>
+  </body>
+</html>

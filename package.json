@@ -1,0 +1,14 @@
+{
+  "name": "rhw",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "14.15.5",
+    "npm": "6.14.11"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express"
+  }
+}
