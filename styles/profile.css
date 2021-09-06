@@ -3,12 +3,7 @@ html {
   width: 100%;
   height: 100%;
   font-family: "Montserrat", sans-serif;
-  /* background: url(../resources/images/hero_img.jpg) no-repeat center center
-    fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
+  background-color: black;
   margin: auto 0;
 }
 
@@ -19,7 +14,7 @@ html {
   position: sticky;
   top: 0;
   height: 8%;
-  /* width: 100%; */
+  justify-content: space-around;
   background-color: #292626;
 }
 
@@ -28,7 +23,6 @@ html {
 }
 
 .company-logo {
-  /* font-family: fantasy; */
   font-size: 3rem;
   color: #e2dbdb;
   padding: 10px 20px 10px 20px;
@@ -66,6 +60,29 @@ html {
 }
 
 .push-right > a:hover {
-  /* background: #ddd; */
   color: beige;
+}
+
+/* User Profile Styling */
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(105, 102, 102, 0.541);
+  color: white;
+  text-align: center;
+}
+
+#logout {
+  text-decoration: none;
+  padding: 20px;
+  color: white;
+}
+
+#logout:hover {
+  background: #ddd;
+  color: black;
 }

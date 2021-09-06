@@ -44,16 +44,7 @@ a:hover {
 
 .buttons {
   margin: 10px;
-  /* justify-items: flex-start; */
   justify-content: space-evenly;
   display: flex;
   flex-direction: row;
 }
-
-/* #register {
-  justify-self: flex-start;
-}
-
-#login {
-  align-self: flex-end;
-} */

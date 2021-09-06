@@ -2,8 +2,6 @@
 
 const input = document.getElementById('todo-title');
 const addButton = document.getElementById('new-todo');
-// const dbtn = document.getElementsByClassName('delete');
-// const todo = document.querySelectorAll('li');
 const taskList = document.querySelector('#tasks');
 
 function inputLength() {
@@ -56,8 +54,6 @@ let tasksTitle = []
 function displayUserTasks() {
     userId = sessionData.id;
     axios.get(`https://jsonplaceholder.typicode.com/users/${userId}/todos`).then(response => {
-        // let taskTitle = [];
-        // console.log('Task count: ', count);
         for (const task of response.data) {
             if (task.completed === false) {
                 tasksTitle.push(task.title);
@@ -95,7 +91,6 @@ function addListItem(title = null) {
     delButton.setAttribute('class', 'delete');
     if (title === null) {
         title = input.value;
-        // let titles = [...tasksTitle];
         tasksTitle.push(title);
         taskCount(tasksTitle, displayCount);
     }
@@ -114,7 +109,6 @@ function addListItem(title = null) {
 }
 
 function addTodoOnclick() {
-    // console.log(sessionStorage.getItem('user-data'));
     if (inputLength() > 0) {
         addListItem();
     }

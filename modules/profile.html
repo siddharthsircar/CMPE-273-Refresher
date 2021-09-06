@@ -9,13 +9,80 @@
       <a class = "logo" href="./todo.html"><h1 class="company-logo">Sort Your Life</h1></a>
       <ul class="nav-container">
         <li class="push-right">
-          <a class="profile" href="./profile.html">My Profile</a>
           <div class="initials">
             <span id="initialsText"></span>          
           </div>
+          <a class="profile" href="./profile.html">My Profile</a>         
         </li>
+        <a id="logout" href="./login.html">Logout</a>
       </ul>
     </nav>
-    <script type="text/javascript" src="../scripts/profile.js"></script>    
+
+    <div class="container">
+      <h1>My Profile</h1>
+      <label for="name">Name: </label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        disabled
+      />
+      <label for="email">Email: </label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        disabled
+      />
+      <label for="phone">Phone: </label>
+      <input
+        type="text"
+        name="phone"
+        id="phone"
+        disabled
+      />
+      <label for="bdate">Date of Birth: </label>
+      <input
+        type="text"
+        name="bdate"
+        id="bdate"
+        disabled
+      />
+      <label for="city">City: </label>
+      <input
+        type="text"
+        name="city"
+        id="city"
+        disabled
+      />
+      <label for="location">Geo Location: </label>
+      <input
+        type="text"
+        name="location"
+        id="location"
+        placeholder="My Location"
+        disabled
+      />
+      <button id="locate">Locate Me!</button>
+    </div>
+    <div class="container">
+      <h1>Follow people to view their tasks</h1>
+      <p id="reqcount">Follow Requests Sent: 0</p>
+      <label for="fName">Name: </label>
+      <input
+        type="text"
+        name="fName"
+        id="fName"        
+      />
+      <label for="fEmail">Email: </label>
+      <input
+        type="text"
+        name="fEmail"
+        id="fEmail"        
+      />
+      <button id="follow">Follow</button>
+      <p id="followText"></p>
+    </div>
+    <script type="module" src="../scripts/profile.js"></script>    
   </body>
 </html>
