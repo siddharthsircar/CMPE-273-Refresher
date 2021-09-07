@@ -71,11 +71,6 @@ const getMyLocation = () => {
     }
 }
 
-displayProfileName();
-
-let userProfile = new profile(sessionData);
-userProfile.displayProfile();
-
 // Using CLOSURES
 const reqCounter = (function () {
     let requests = 0;
@@ -98,20 +93,22 @@ const requestInfo = (...rest) => {
 function followUser() {
     const folName = document.getElementById('fName');
     const folEmail = document.getElementById('fEmail');
-
+    console.log(folEmail.value);
     // Using CALL and APPLY
     if (folName.value === "" && folEmail.value !== "") {
-        if (validateEmail(folEmail.value) === true) {
+        // Using CALL
+        if (validateEmail(folEmail.value)) {
             requestInfo.call("", folEmail.value);
             folEmail.value = "";
             displayRequestCount();
-        } else { alert('Invalid Email!'); }
+        } else alert('Invalid Email!');
     } else if (folName.value !== "" && folEmail.value === "") {
         requestInfo.call("", folName.value);
         folName.value = "";
         displayRequestCount();
     } else if (folName.value !== "" && folEmail.value !== "") {
-        if (!validateEmail(folEmail.value)) {
+        // Using APPLY
+        if (validateEmail(folEmail.value)) {
             requestInfo.apply("", [folName.value, folEmail.value]);
             folName.value = "";
             folEmail.value = "";
@@ -119,6 +116,11 @@ function followUser() {
         } else alert('Invalid Email!');
     } else alert('Enter either follower Name or Email!');
 }
+
+displayProfileName();
+
+let userProfile = new profile(sessionData);
+userProfile.displayProfile();
 
 locateButton.addEventListener('click', getMyLocation);
 followBtn.addEventListener('click', followUser);

@@ -1,24 +1,26 @@
 'use strict'
 
-// Using CONST to declare constant variable which will not be updated later
+// Using CONST to declare constant variable which can not be updated later
 const emailTxtbx = document.getElementById('email');
 const nameTxtbx = document.getElementById('name');
 const passwordTxtbx = document.getElementById('password');
 const loginBtn = document.getElementById('login');
 const registerBtn = document.getElementById('register');
 
-// Using VAR to declare global variables
+// Using VAR
 var firstName;
 var lastName;
 
-// Use of SPLIT func to split full name.
-// Use of ARROW FUNCTION
-var splitName = (name) => {
-    // Use of LET to create block scope variable 
+// Using SPLIT func to split full name.
+// Using ARROW FUNCTION
+const splitName = (name) => {
+    // Use of LET to create block scope variable (Can not be accessed outside this block)
     let fullName = name.split(' ');
     fullName = [fullName[0], fullName[fullName.length - 1]]
     return fullName;
 }
+
+// console.log(fullName); will throw an ERROR
 
 // Using AXIOS API call to validate user
 function authenticateUser() {
@@ -64,7 +66,7 @@ function validateEmail(email) {
     return false;
 }
 
-// Object
+// OBJECT
 let userDeets = {
     'id': 1,
     'name': 'Siddharth Sircar',
@@ -80,52 +82,72 @@ let userDeets = {
     'phone': '1-408-207-7389'
 }
 
+// Using ASYNC / AWAIT
+async function getUserData(email) {
+    let response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${email}`);
+    let data = await response.json();
+    return data;
+}
+
 function storeUserDetails(email) {
     if (email === 'sid@gmail.com') {
         // Use JSON.stringify to convert JSON object into string
         let userData = JSON.stringify(userDeets);
         sessionStorage.setItem('user-data', userData);
     } else {
-        axios.get(`https://jsonplaceholder.typicode.com/users?email=${email}`).then(response => {
-            // let user_data = JSON.stringify(response.data[0]);            
-            let userResponse = response.data[0];
-            console.log(userResponse.name);
+        // Using ASYNC/AWAIT
+        getUserData(email).then((data) => {
+            let apiResponse = data[0];
             // Using OBJECT.ASSIGN
             Object.assign(userDeets, {
-                'id': userResponse.id,
-                'name': userResponse.name,
+                'id': apiResponse.id,
+                'name': apiResponse.name,
                 'email': `${email}`,
                 'address': {
-                    'city': `${userResponse.address.city}`,
-                    'zipcode': `${userResponse.address.zipcode}`,
+                    'city': `${apiResponse.address.city}`,
+                    'zipcode': `${apiResponse.address.zipcode}`,
                     'geo': {
-                        'lat': `${userResponse.address.geo.lat}`,
-                        'lng': `${userResponse.address.geo.lng}`
+                        'lat': `${apiResponse.address.geo.lat}`,
+                        'lng': `${apiResponse.address.geo.lng}`
                     }
                 },
-                'phone': `${userResponse.phone}`
+                'phone': `${apiResponse.phone}`
             })
             let userData = JSON.stringify(userDeets);
-            // console.log(user_data);
             sessionStorage.setItem('user-data', userData);
-        }
-        ).catch(error => {
-            console.log(error);
-            alert(error);
-        });
+        })
     }
 }
 
 function registerUser() {
-    if (document.title === 'LOGIN') location.href = '../modules/register.html';
+    if (document.title === 'LOGIN') {
+        location.href = '../modules/register.html';
+        return false;
+    }
     else {
-        let userData = JSON.stringify(userDeets);
-        // console.log(user_data);
-        sessionStorage.setItem('user-data', userData);
-        alert('User Registered');
-        location.href = '../modules/todo.html';
+        // Using Promise
+        registerPromise().then((message) => {
+            let userData = JSON.stringify(userDeets);
+            sessionStorage.setItem('user-data', userData);
+            location.href = '../modules/todo.html';
+            console.log(message);
+        }).catch((error) => {
+            alert(error);
+        })
+        return false;
     }
 }
 
+// Using PROMISE
+function registerPromise() {
+    return new Promise((resolve, reject) => {
+        let emailTxtbx = document.getElementById('email');
+        let email = emailTxtbx.value;
+        if (validateEmail(email)) {
+            resolve('Registration Successful!');
+        } else reject('Invalid Email!');
+    })
+}
+
 loginBtn.addEventListener('click', authenticateUser);
-registerBtn.addEventListener('click', registerUser);
+// registerBtn.addEventListener('click', registerUser);

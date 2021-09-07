@@ -1,3 +1,7 @@
+.navigation-bar {
+  justify-content: flex-start;
+}
+
 a {
   text-decoration: none;
   padding: 20px;

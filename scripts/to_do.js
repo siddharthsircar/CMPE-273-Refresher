@@ -26,8 +26,6 @@ function profileName() {
     document.getElementById('initialsText').innerHTML = firstNameInit + secondNameInit;
 }
 
-profileName();
-
 // Object
 let fullName = {
     firstName: 'Siddharth',
@@ -45,7 +43,6 @@ const greetUser = () => {
 
     // Destructuring OBJECT
     const { firstName, lastName } = fullName;
-    console.log(firstName, lastName);
     alert(`Hi ${firstName} ${lastName}`);
 }
 
@@ -68,6 +65,7 @@ function displayUserTasks() {
     });
 }
 
+// Callback
 const taskCount = (tasks, myCallback) => {
     let count = tasks.length;
     myCallback(count);
@@ -76,11 +74,7 @@ const taskCount = (tasks, myCallback) => {
 function displayCount(count) {
     let countEl = document.getElementById('task-count');
     countEl.innerHTML = `No. of tasks: ${count}`;
-    console.log(countEl.innerHTML);
-    console.log('Using Callback: ', count);
 }
-
-displayUserTasks();
 
 // Using DEFAULT ARGUMENTS in function in case function call doesnot have send any params
 function addListItem(title = null) {
@@ -91,6 +85,8 @@ function addListItem(title = null) {
     delButton.setAttribute('class', 'delete');
     if (title === null) {
         title = input.value;
+        // Using LOCALSTORAGE (storage does not expire)
+        localStorage.setItem('taks', title);
         tasksTitle.push(title);
         taskCount(tasksTitle, displayCount);
     }
@@ -119,6 +115,9 @@ function addTodoOnEnter(event) {
         addListItem();
     }
 }
+
+profileName();
+displayUserTasks();
 
 addButton.addEventListener('click', addTodoOnclick);
 input.addEventListener('keypress', addTodoOnEnter);
