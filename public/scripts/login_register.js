@@ -24,7 +24,7 @@ const splitName = (name) => {
 
 // Using AXIOS API call to validate user
 function authenticateUser() {
-    if (document.title === 'REGISTER') location.href = '../modules/login.html';
+    if (document.title === 'REGISTER') location.href = '/login';
     else {
         axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
             let userEmails = ['sid@gmail.com'];
@@ -43,7 +43,7 @@ function authenticateUser() {
                     if (userEmails.includes(email)) {
                         if (password === '1234') {
                             storeUserDetails(email);
-                            location.href = '../modules/todo.html';
+                            location.href = '/todo';
                         }
                         else alert('Incorrect Password!');
                     }
@@ -121,7 +121,7 @@ function storeUserDetails(email) {
 
 function registerUser() {
     if (document.title === 'LOGIN') {
-        location.href = '../modules/register.html';
+        location.href = '/register';
         return false;
     }
     else {
@@ -129,7 +129,7 @@ function registerUser() {
         registerPromise().then((message) => {
             let userData = JSON.stringify(userDeets);
             sessionStorage.setItem('user-data', userData);
-            location.href = '../modules/todo.html';
+            location.href = '/todo';
             console.log(message);
         }).catch((error) => {
             alert(error);
