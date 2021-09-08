@@ -76,7 +76,7 @@ function displayCount(count) {
     countEl.innerHTML = `No. of tasks: ${count}`;
 }
 
-// Using DEFAULT ARGUMENTS in function in case function call doesnot have send any params
+// Using DEFAULT ARGUMENTS in function in case function call doesnot send any params
 function addListItem(title = null) {
     let li = document.createElement('li');
 
